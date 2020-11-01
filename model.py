@@ -31,11 +31,11 @@ model = Sequential()
 model.add(Cropping2D(cropping=((70,25), (0,0)), input_shape=(160,320,3)))
 model.add(Lambda(lambda x : (x / 255) - 0.5))
 
-model.add(Conv2D(24, kernel_size=5, strides=2, activation='relu'))
-model.add(Conv2D(36, kernel_size=5, strides=2, activation='relu'))
-model.add(Conv2D(48, kernel_size=5, strides=2, activation='relu'))
-model.add(Conv2D(64, kernel_size=3, strides=1, activation='relu'))
-model.add(Conv2D(64, kernel_size=3, strides=1, activation='relu'))
+model.add(Conv2D(filters=24, kernel_size=5, strides=2, activation='relu'))
+model.add(Conv2D(filters=36, kernel_size=5, strides=2, activation='relu'))
+model.add(Conv2D(filters=48, kernel_size=5, strides=2, activation='relu'))
+model.add(Conv2D(filters=64, kernel_size=3, strides=1, activation='relu'))
+model.add(Conv2D(filters=64, kernel_size=3, strides=1, activation='relu'))
 
 model.add(Flatten())
 model.add(Dense(100))
@@ -47,5 +47,3 @@ model.compile(loss='mse', optimizer='adam')
 model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=5)
 
 model.save('model.h5')
-print("success")
-    
